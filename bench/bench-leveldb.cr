@@ -2,7 +2,7 @@ require "leveldb"
 
 File.delete("1.ldb") if File.exists?("1.ldb")
 db = LevelDB::DB.new("./1.ldb")
-N = 1_000_000
+N = 2_000_000
 
 t = Time.local
 N.times do |i|

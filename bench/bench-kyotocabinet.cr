@@ -2,7 +2,7 @@ require "kyotocabinet"
 
 File.delete("1.kch") if File.exists?("1.kch")
 db = KyotoCabinet::DB.new("1.kch")
-N = 1_000_000
+N = 2_000_000
 
 t = Time.local
 N.times do |i|

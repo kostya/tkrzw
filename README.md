@@ -31,10 +31,11 @@ db.close
 ```
 ## Compare with [LevelDB](https://github.com/crystal-community/leveldb) and [KyotoCabinet](https://github.com/kostya/kyotocabinet)
 
-| test                     | Tkrzw | LevelDB | KyotoCabinet |
-| ------------------------ | -------- | ------- | ------------ |
-| 1 mln set                | 3.66s   | 3.66s   | 1.00s        |
-| 1 mln get                | 3.66s   | 1.95s   | 0.63s        |
-| iterate over all records | 3.66s   | 0.27s   | 0.31s        |
-| db size                  | 3.66s   | 16Mb    | 45Mb         |
-| memory used              | 3.66s   | 16Mb    | 45Mb         |
+| test                     | Tkrzw  | LevelDB | KyotoCabinet |
+| ------------------------ | ------ | ------- | ------------ |
+| 2 mln set                | 1.22s  | 3.95s   | 1.66s        |
+| 2 mln get                | 0.96s  | 2.43s   | 1.22s        |
+| iterate over all records | 1.19s  | 0.34s   | 0.73s        |
+| db size                  | 65Mb   | 21Mb    | 83Mb         |
+| memory used              | 72.2Mb | 97.1Mb  | 70.4Mb       |
+

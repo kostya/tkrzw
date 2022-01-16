@@ -2,7 +2,7 @@ require "../src/tkrzw"
 
 File.delete("1.tkh") if File.exists?("1.tkh")
 db = Tkrzw::DB.new("1.tkh")
-N = 1_000_000
+N = 2_000_000
 
 t = Time.local
 N.times do |i|
