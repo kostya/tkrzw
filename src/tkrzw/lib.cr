@@ -1,5 +1,5 @@
 module Tkrzw
-  @[Link(ldflags: "#{__DIR__}/../ext/tkrzw-c/libtkrzw.a -lstdc++ -lm -lz")]
+  @[Link(ldflags: "#{__DIR__}/../ext/tkrzw-c/libtkrzw.a -lstdc++ -lz")]
   lib Lib
     type DBM = Void*
     fun tkrzw_dbm_open(path : UInt8*, writable : Bool, params : UInt8*) : DBM
