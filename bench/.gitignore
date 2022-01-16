@@ -1,0 +1,7 @@
+*.ldb
+*.tkh
+*.kch
+lib
+shard.lock
+bin_*
+

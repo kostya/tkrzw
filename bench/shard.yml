@@ -1,0 +1,7 @@
+name: bench
+version: 0.1
+dependencies:
+  kyotocabinet:
+    github: kostya/kyotocabinet
+  leveldb:
+    github: "crystal-community/leveldb"

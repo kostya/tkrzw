@@ -1,0 +1,9 @@
+name: tkrzw
+version: 0.1.0
+
+authors:
+  - Konstantin Makarchev <kostya27@gmail.com>
+
+crystal: 1.2.1
+
+license: MIT
