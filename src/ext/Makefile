@@ -1,4 +1,4 @@
-VERSION := 1.0.22
+VERSION := 1.0.24
 
 .PHONY: package
 package: ./tkrzw-c/libtkrzw.a
