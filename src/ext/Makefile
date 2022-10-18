@@ -11,7 +11,7 @@ package: ./tkrzw-c/libtkrzw.a
 
 ./tkrzw-c/libtkrzw.a: ./tkrzw-c
 	cd tkrzw-c && ./configure --enable-opt-native --enable-most-features
-	cd tkrzw-c && make -j4
+	cd tkrzw-c && make libtkrzw.a -j4 && rm *.o
 
 .PHONY: clean
 clean:
