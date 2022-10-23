@@ -9,6 +9,15 @@ describe Tkrzw do
     end
   end
 
+  it "get_slice" do
+    Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
+      db.set("bla", "jopa")
+      v = nil
+      db.get_slice("bla") { |slice| v = String.new(slice); nil }
+      v.should eq "jopa"
+    end
+  end
+
   # it "del" do
   #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
   #     db.set("bla", "mu")

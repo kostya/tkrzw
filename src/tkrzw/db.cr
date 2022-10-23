@@ -36,13 +36,23 @@ class Tkrzw::DB
 
   @[AlwaysInline]
   def get(key : String)
+    get_slice(key) do |slice|
+      String.new(slice)
+    end
+  end
+
+  @[AlwaysInline]
+  def get_slice(key : String)
     ptr = Lib.tkrzw_dbm_get(@dbm, key, key.bytesize, out value_size)
 
+    result = nil
+
     unless ptr.null?
-      res = String.new(ptr, value_size)
+      result = yield Slice(UInt8).new(ptr, value_size)
       LibC.free(ptr)
-      res
     end
+
+    result
   end
 
   def []=(key, value)
@@ -52,34 +62,6 @@ class Tkrzw::DB
   def [](key)
     get(key)
   end
-
-  # def has_key?(key : String)
-  #   if Lib.dbcheck(@db, key, key.bytesize) == -1
-  #     false
-  #   else
-  #     true
-  #   end
-  # end
-
-  # # get and del
-  # def extract(key : String)
-  #   vbuf = Lib.dbseize(@db, key, key.bytesize, out vsiz)
-  #   unless vbuf.null?
-  #     res = String.new(vbuf, vsiz)
-  #     Lib.free(vbuf.as(Void*))
-  #     res
-  #   else
-  #     # raise Error.new("get error '#{last_ecode_name}'")
-  #     nil
-  #   end
-  # end
-
-  # def del(key : String)
-  #   if Lib.dbremove(@db, key, key.bytesize) == 0
-  #     raise Error.new("del error '#{last_ecode_name}'")
-  #   end
-  #   true
-  # end
 
   def each
     iter = Lib.tkrzw_dbm_make_iterator(@dbm)
@@ -102,30 +84,4 @@ class Tkrzw::DB
   ensure
     Lib.tkrzw_dbm_iter_free(iter) if iter
   end
-
-  # def drop!
-  #   Lib.dbdel(@db)
-  # end
-
-  # def clear!
-  #   if Lib.dbclear(@db) == 0
-  #     raise Error.new("clear error '#{last_ecode_name}'")
-  #   end
-  #   true
-  # end
-
-  # def count
-  #   Lib.dbcount(@db)
-  # end
-
-  # def size
-  #   Lib.dbsize(@db)
-  # end
-
-  # def status
-  #   s = Lib.dbstatus(@db)
-  #   res = String.new(s)
-  #   Lib.free(s.as(Void*))
-  #   res
-  # end
 end
