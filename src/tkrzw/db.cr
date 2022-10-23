@@ -30,19 +30,19 @@ class Tkrzw::DB
   end
 
   @[AlwaysInline]
-  def set(key : String, value : String)
+  def set(key : String | Bytes, value : String | Bytes)
     Lib.tkrzw_dbm_set(@dbm, key, key.bytesize, value, value.bytesize, true)
   end
 
   @[AlwaysInline]
-  def get(key : String)
+  def get(key : String | Bytes)
     get_slice(key) do |slice|
       String.new(slice)
     end
   end
 
   @[AlwaysInline]
-  def get_slice(key : String)
+  def get_slice(key : String | Bytes)
     ptr = Lib.tkrzw_dbm_get(@dbm, key, key.bytesize, out value_size)
 
     result = nil
