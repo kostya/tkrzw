@@ -42,6 +42,11 @@ class Tkrzw::DB
   end
 
   @[AlwaysInline]
+  def del(key : String | Bytes)
+    Lib.tkrzw_dbm_remove(@dbm, key, key.bytesize)
+  end
+
+  @[AlwaysInline]
   def get_slice(key : String | Bytes)
     ptr = Lib.tkrzw_dbm_get(@dbm, key, key.bytesize, out value_size)
 

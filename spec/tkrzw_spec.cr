@@ -18,14 +18,14 @@ describe Tkrzw do
     end
   end
 
-  # it "del" do
-  #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
-  #     db.set("bla", "mu")
-  #     db.get("bla").should eq "mu"
-  #     db.del("bla").should eq true
-  #     db.get("bla").should eq nil
-  #   end
-  # end
+  it "del" do
+    Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
+      db.set("bla", "mu")
+      db.get("bla").should eq "mu"
+      db.del("bla").should eq true
+      db.get("bla").should eq nil
+    end
+  end
 
   # it "has_key?" do
   #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|

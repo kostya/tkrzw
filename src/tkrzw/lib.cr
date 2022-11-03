@@ -5,6 +5,7 @@ module Tkrzw
     fun tkrzw_dbm_open(path : UInt8*, writable : Bool, params : UInt8*) : DBM
     fun tkrzw_dbm_set(dbm : DBM, key : UInt8*, key_size : Int32, value : UInt8*, value_size : Int32, overwrite : Bool)
     fun tkrzw_dbm_get(dbm : DBM, key : UInt8*, key_size : Int32, value_size : Int32*) : UInt8*
+    fun tkrzw_dbm_remove(dbm : DBM, key : UInt8*, key_size : Int32) : Bool
     fun tkrzw_dbm_close(dbm : DBM)
 
     # iter
