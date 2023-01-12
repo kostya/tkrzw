@@ -9,11 +9,11 @@ describe Tkrzw do
     end
   end
 
-  it "get_slice" do
+  it "get_raw" do
     Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
       db.set("bla", "jopa")
       v = nil
-      db.get_slice("bla") { |slice| v = String.new(slice); nil }
+      db.get_raw("bla") { |slice| v = String.new(slice); nil }
       v.should eq "jopa"
     end
   end
@@ -27,42 +27,24 @@ describe Tkrzw do
     end
   end
 
-  # it "has_key?" do
-  #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
-  #     db.has_key?("bla").should eq false
-  #     db.set("bla", "mu")
-  #     db.has_key?("bla").should eq true
-  #   end
-  # end
+  it "has_key?" do
+    Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
+      db.set("bla", "mu")
+      db.has_key?("bla").should eq true
+      db.has_key?("bla2").should eq false
+    end
+  end
 
-  # it "extract" do
-  #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
-  #     db.has_key?("bla").should eq false
-  #     db.set("bla", "mu")
-  #     db.has_key?("bla").should eq true
-  #     db.extract("bla").should eq "mu"
-  #     db.has_key?("bla").should eq false
-  #     db.extract("bla").should eq nil
-  #   end
-  # end
-
-  # it "clear!" do
-  #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
-  #     db.set("bla", "mu")
-  #     db.has_key?("bla").should eq true
-  #     db.clear!
-  #     db.has_key?("bla").should eq false
-  #   end
-  # end
-
-  # it "stats" do
-  #   Tkrzw::DB.open(spec_db_name("1.kch")) do |db|
-  #     db.set("bla", "mu")
-  #     db.count.should eq 1
-  #     db.size.should be > 1_000_000
-  #     db.status.should_not eq ""
-  #   end
-  # end
+  it "extract" do
+    Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
+      db.has_key?("bla").should eq false
+      db.set("bla", "mu")
+      db.has_key?("bla").should eq true
+      db.extract("bla").should eq "mu"
+      db.has_key?("bla").should eq false
+      db.extract("bla").should eq nil
+    end
+  end
 
   it "each" do
     Tkrzw::DB.open(spec_db_name("1.tkh")) do |db|
