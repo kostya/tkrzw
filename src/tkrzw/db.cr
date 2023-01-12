@@ -1,10 +1,10 @@
 class Tkrzw::DB
   @dbm : Lib::DBM
 
-  def initialize(@path : String, @locking = true, @params = "")
+  def initialize(@path : String, @writable = true, @params = "")
     # "truncate=true,num_buckets=100"
 
-    @dbm = Lib.tkrzw_dbm_open(@path, @locking, @params)
+    @dbm = Lib.tkrzw_dbm_open(@path, @writable, @params)
     if @dbm.null?
       raise Error.new("Failed to initialize dbm")
     end
@@ -12,8 +12,8 @@ class Tkrzw::DB
     @closed = false
   end
 
-  def self.open(path, locking = true, params = "")
-    db = DB.new(path, locking, params)
+  def self.open(path, writable = true, params = "")
+    db = DB.new(path, writable, params)
     yield db
   ensure
     db.close if db
