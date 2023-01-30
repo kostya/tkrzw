@@ -6,7 +6,7 @@ class Tkrzw::DB
 
     @dbm = Lib.tkrzw_dbm_open(@path, @writable, @params)
     if @dbm.null?
-      raise Error.new("Failed to initialize dbm")
+      raise Error.new("Failed to initialize dbm #{@path} #{@writable} #{@params}")
     end
 
     @closed = false
